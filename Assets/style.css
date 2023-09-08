@@ -1,0 +1,51 @@
+div {
+    display: flex;
+    justify-content: space-between;
+}
+
+nav a {
+    color: purple;
+    text-decoration: none;
+    font-size: 14px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+nav a:hover {
+    cursor: pointer;
+}
+
+h1 {
+    color: black;
+    font-size: 14px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: lighter;
+    margin-top: 0px;
+    
+}
+
+button {
+    align-self: flex-end;
+    margin-top: 150px;
+}
+
+.btn {
+    background-color: purple;
+    border: 1px;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    border-radius: 5px;
+  }
+
+.btn:hover {
+    cursor: pointer;
+    background-color: lightgray;
+    color: purple;
+    border: 1px;
+    border-color: black;
+    border-style: solid;
+}
