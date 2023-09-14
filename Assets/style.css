@@ -1,51 +1,88 @@
-div {
+* {
+    box-sizing: border-box;
+    margin: 10px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+  }
+  
+  /* set main screen background color */
+  body {
+    background-color: white;
+    padding: 0;
+    padding: 0;
+  }
+
+  /*  set the display elements for the class .start-container incdluing the buttons aligned to center */
+  .start-container {
     display: flex;
-    justify-content: space-between;
-}
-
-nav a {
-    color: purple;
-    text-decoration: none;
-    font-size: 14px;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-}
-
-nav a:hover {
-    cursor: pointer;
-}
-
-h1 {
-    color: black;
-    font-size: 14px;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-weight: lighter;
+    justify-content: center;
+    align-items: center;
+    padding-top: 100px;
+  }
+  
+  /* Main header set to center */
+  header {
+    text-align: center;
+    display: inline flex;
+    margin: 0px;
+  }
+  
+  /* put a shadow on the header */
+  h1 {
+    float: left;
     margin-top: 0px;
-    
+    padding-top: 0px;
+  }
+
+  nav a {
+    font-size: 14px;
+    text-decoration: none;
+    font-weight: lighter;
+    color: purple;
+  }
+
+  nav a:hover {
+    cursor: pointer;
+    font-weight: bold;
 }
 
-button {
-    align-self: flex-end;
-    margin-top: 150px;
-}
+  h2 {
+    float: right;
+    margin-top: 25px;
+    /* margin-right: 30px; */
+    font-size: 14px;
+    font-weight: lighter;
+  }
 
-.btn {
+
+ 
+
+  
+  .btn {
+    padding: 5px 15px;
+    display: flex;
+    justify-content: center;
+    /* width: 10%; */
+    border-radius: 5px;
+    /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19); */
+    /* font-size: 1.5vw; */
+    margin: 5px;
     background-color: purple;
     border: 1px;
-    border: none;
     color: white;
     text-align: center;
     text-decoration: none;
-    display: inline-block;
     font-size: 16px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    border-radius: 5px;
+  
   }
-
-.btn:hover {
+  
+  .btn:hover {
     cursor: pointer;
     background-color: lightgray;
     color: purple;
     border: 1px;
     border-color: black;
     border-style: solid;
-}
+  } 
+
+  
