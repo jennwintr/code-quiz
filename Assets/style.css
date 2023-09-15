@@ -4,14 +4,12 @@
     font-family: Verdana, Geneva, Tahoma, sans-serif;
   }
   
-  /* set main screen background color */
   body {
     background-color: white;
     padding: 0;
     padding: 0;
   }
 
-  /*  set the display elements for the class .start-container incdluing the buttons aligned to center */
   .start-container {
     display: flex;
     justify-content: center;
@@ -19,14 +17,12 @@
     padding-top: 100px;
   }
   
-  /* Main header set to center */
   header {
     text-align: center;
     display: inline flex;
     margin: 0px;
   }
   
-  /* put a shadow on the header */
   h1 {
     float: left;
     margin-top: 0px;
@@ -53,9 +49,25 @@
     font-weight: lighter;
   }
 
-
- 
-
+  .quiz-container,
+  .completed-container {
+    margin: auto;
+    width: 700px;
+    max-width: 80%;
+    background-color: none;
+    border-radius: 5px;
+    padding: 20px 50px;
+    font-size: 16px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+  }
+  
+  .btn-grid {
+    display: grid;
+  }
+  
+  #start-btn {
+    margin-right: 150px;
+  }
   
   .btn {
     padding: 5px 15px;
