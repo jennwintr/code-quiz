@@ -1,17 +1,21 @@
-var startButton = document.getElementById("start-btn"); 
-var nextButton = document.getElementById("next-btn"); 
-var questionBoxElement = document.getElementById("question-container"); 
-var questionElement = document.getElementById("question"); 
-var answerBtnElement = document.getElementById("answer-btns"); 
-var doneBoxElement = document.getElementById("done-container"); 
-var formEl = document.getElementById("enter-initials-box"); 
-var scoreBox = document.getElementById("scoreBox"); 
-var timerEl = document.getElementById("countdown"); 
+var startButton = $("#start-btn"); 
+var nextButton = $("#next-btn"); 
+var questionBoxElement = $("#question-container"); 
+var questionElement = $("#question"); 
+var answerBtnElement = $("#answer-btns"); 
+var doneBoxElement = $("#done-container"); 
+var formEl = $("#enter-initials-box"); 
+var scoreBox = $("#scoreBox");
+var timerEl = $("#countdown"); 
+
+var shuffleQuestions, currentQuestionIndex; 
 
 var timeInterval;
 var timeLeft = 60;
 var score = 0;
 
+
+var finalInfo = [];
 
 function startQuiz() {
   countdown();
