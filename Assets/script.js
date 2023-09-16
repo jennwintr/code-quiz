@@ -71,14 +71,12 @@ function showQuestion(question) {
 }
 
 function resetAnswer() {
-  //want to hide the 'next' btn when the next question appears
   nextButton.classList.add("hide");
   while (answerBtnElement.firstChild) {
     answerBtnElement.removeChild(answerBtnElement.firstChild);
   }
 }
 
-//when user click button element the variable selectedButton checks the answer and increments the score based on time.  After that, hid the question container, show next button, and check if more questions are left. If no more questions, display next button. Otherwise end the game.
 function selectAnswer(event) {
   var selectedButton = event.target;
   var correct = selectedButton.dataset.correct;
@@ -88,7 +86,7 @@ function selectAnswer(event) {
   } else {
     timeLeft -= 10;
   }
-  // hide the question box once the answer is selected
+
   questionBoxElement.classList.add("hide");
     nextButton.classList.remove("hide");
   if (shuffleQuestions.length > currentQuestionIndex + 1) {
