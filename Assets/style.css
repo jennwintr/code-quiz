@@ -27,6 +27,10 @@
     float: left;
     margin-top: 0px;
     padding-top: 0px;
+    font-size: 14px;
+    text-decoration: none;
+    font-weight: lighter;
+    color: purple;
   }
 
   nav a {
@@ -36,10 +40,10 @@
     color: purple;
   }
 
-  nav a:hover {
+  /* nav a:hover {
     cursor: pointer;
     font-weight: bold;
-}
+} */
 
   h2 {
     float: right;
