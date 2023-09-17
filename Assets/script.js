@@ -1,10 +1,10 @@
-var startButton = document.getElementById("start-btn");
-var nextButton = document.getElementById("next-btn"); 
-var questionBoxElement = document.getElementById("question-container"); 
-var questionElement = document.getElementById("question"); 
-var answerBtnElement = document.getElementById("answer-btns"); 
-var doneBoxElement = document.getElementById("done-container");
-var formEl = document.getElementById("enter-initials-box"); 
+var start = document.getElementById("start-btn");
+var next = document.getElementById("next-btn"); 
+var questionContainer = document.getElementById("question-container"); 
+var question = document.getElementById("question"); 
+var answerButton = document.getElementById("answer-btns"); 
+var done = document.getElementById("done-container");
+var playersName = document.getElementById("enter-initials-box"); 
 var scoreBox = document.getElementById("scoreBox"); 
 var timerEl = document.getElementById("countdown");
 var shuffleQuestions, currentQuestionIndex; 
@@ -18,11 +18,11 @@ var finalInfo = [];
 
 function startQuiz() {
   countdown();
-  startButton.classList.add("hide"); 
-  doneBoxElement.classList.add("hide");
+  start.classList.add("hide"); 
+  done.classList.add("hide");
   shuffleQuestions = questions.sort(() => Math.random() - 0.5);
   currentQuestionIndex = 0;
-  questionBoxElement.classList.remove("hide");
+  questionContainer.classList.remove("hide");
   nextQuestion();
 }
 
@@ -38,25 +38,26 @@ function countdown() {
   }, 1000);
 }
 
+
 function nextQuestion() {
   resetAnswer();
   showQuestion(shuffleQuestions[currentQuestionIndex]);
-  questionBoxElement.classList.remove("hide");
+  questionContainer.classList.remove("hide");
   console.log(currentQuestionIndex);
 }
 
-startButton.addEventListener("click", () => {
+start.addEventListener("click", function() {
   restart();
   startQuiz();
 });
 
-nextButton.addEventListener("click", () => {
+next.addEventListener("click", () => {
   currentQuestionIndex++;
   nextQuestion();
 });
 
 function showQuestion(question) {
-  questionElement.innerText = question.question;
+  question.innerText = question.question;
   question.answers.forEach((answer) => {
     var button = document.createElement("button");
     button.innerText = answer.text;
@@ -65,14 +66,14 @@ function showQuestion(question) {
       button.dataset.correct = answer.correct;
     }
     button.addEventListener("click", selectAnswer);
-    answerBtnElement.appendChild(button);
+    answerButton.appendChild(button);
   });
 }
 
 function resetAnswer() {
-  nextButton.classList.add("hide");
-  while (answerBtnElement.firstChild) {
-    answerBtnElement.removeChild(answerBtnElement.firstChild);
+  next.classList.add("hide");
+  while (answerButton.firstChild) {
+    answerButton.removeChild(answerButton.firstChild);
   }
 }
 
@@ -86,10 +87,10 @@ function selectAnswer(event) {
     timeLeft -= 10;
   }
 
-  questionBoxElement.classList.add("hide");
-    nextButton.classList.remove("hide");
+  questionContainer.classList.add("hide");
+    next.classList.remove("hide");
   if (shuffleQuestions.length > currentQuestionIndex + 1) {
-    nextButton.classList.remove("hide");
+    next.classList.remove("hide");
   } else {
     endGame();
   }
@@ -103,12 +104,12 @@ function endGame() {
   timeLeft = "";
   timerEl.textContent = "";
 
-  questionBoxElement.classList.add("hide");
-  answerBtnElement.classList.add("hide");
-  nextButton.classList.add("hide");
-  doneBoxElement.classList.remove("hide");
+  questionContainer.classList.add("hide");
+  answerButton.classList.add("hide");
+  next.classList.add("hide");
+  done.classList.remove("hide");
 
-  formEl.addEventListener("submit", (event) => {
+  playersName.addEventListener("submit", (event) => {
     event.preventDefault();
     var userInput = document.querySelector("input[name='Initials']").value;
     console.log(userInput);
@@ -126,9 +127,9 @@ function endGame() {
 }
 
 function showScores() {
-  formEl.remove();
-  startButton.innerText = "Restart";
-  startButton.classList.remove("hide");
+  playersName.remove();
+  start.innerText = "Restart";
+  start.classList.remove("hide");
 
   var finalInfo = JSON.parse(localStorage.getItem("finalInfo")) || [];
   for (i = 0; i < finalInfo.length; i++) {
@@ -140,12 +141,14 @@ function showScores() {
 }
 
 function restart() {
-  questionBoxElement.classList.remove("hide");
-  answerBtnElement.classList.remove("hide");
-  nextButton.classList.remove("hide");
-  doneBoxElement.classList.add("hide");
+  questionContainer.classList.remove("hide");
+  answerButton.classList.remove("hide");
+  next.classList.remove("hide");
+  done.classList.add("hide");
   timeLeft = 60;
 }
+
+
 
 var questions = [
   {
