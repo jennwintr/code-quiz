@@ -1,11 +1,11 @@
 var start = document.getElementById("start-btn");
 var next = document.getElementById("next-btn"); 
 var questionContainer = document.getElementById("question-container"); 
-var question = document.getElementById("question"); 
+var questionElement = document.getElementById("question"); 
 var answerButton = document.getElementById("answer-btns"); 
-var done = document.getElementById("done-container");
-var playersName = document.getElementById("enter-initials-box"); 
-var scoreBox = document.getElementById("scoreBox"); 
+var doneBox = document.getElementById("done-container");
+var usersName = document.getElementById("enter-initials-box"); 
+var scoreEl = document.getElementById("scoreEl"); 
 var timerEl = document.getElementById("countdown");
 var shuffleQuestions, currentQuestionIndex; 
 
@@ -14,16 +14,16 @@ var timeLeft = 60;
 var score = 0;
 
 
-var finalInfo = [];
+var finalQuiz = [];
 
-function startQuiz() {
+function beginQuiz() {
   countdown();
   start.classList.add("hide"); 
-  done.classList.add("hide");
+  doneBox.classList.add("hide");
   shuffleQuestions = questions.sort(() => Math.random() - 0.5);
   currentQuestionIndex = 0;
   questionContainer.classList.remove("hide");
-  nextQuestion();
+  nextQ();
 }
 
 function countdown() {
@@ -39,25 +39,25 @@ function countdown() {
 }
 
 
-function nextQuestion() {
+function nextQ() {
   resetAnswer();
-  showQuestion(shuffleQuestions[currentQuestionIndex]);
+  showQ(shuffleQuestions[currentQuestionIndex]);
   questionContainer.classList.remove("hide");
   console.log(currentQuestionIndex);
 }
 
 start.addEventListener("click", function() {
   restart();
-  startQuiz();
+  beginQuiz();
 });
 
 next.addEventListener("click", () => {
   currentQuestionIndex++;
-  nextQuestion();
+  nextQ();
 });
 
-function showQuestion(question) {
-  question.innerText = question.question;
+function showQ(question) {
+  questionElement.innerText = question.question;
   question.answers.forEach((answer) => {
     var button = document.createElement("button");
     button.innerText = answer.text;
@@ -98,7 +98,7 @@ function selectAnswer(event) {
 
 function endGame() {
   var finalScore = score;
-  scoreBox.textContent = "Your score is " + finalScore + ".";
+  scoreEl.textContent = "Your score is " + finalScore + ".";
   console.log(finalScore);
   localStorage.setItem("finalScore", finalScore);
   timeLeft = "";
@@ -107,9 +107,9 @@ function endGame() {
   questionContainer.classList.add("hide");
   answerButton.classList.add("hide");
   next.classList.add("hide");
-  done.classList.remove("hide");
+  doneBox.classList.remove("hide");
 
-  playersName.addEventListener("submit", (event) => {
+  usersName.addEventListener("submit", (event) => {
     event.preventDefault();
     var userInput = document.querySelector("input[name='Initials']").value;
     console.log(userInput);
@@ -119,24 +119,24 @@ function endGame() {
       initials: userInput,
       score: finalScore,
     };
-    var finalInfo = JSON.parse(localStorage.getItem("finalInfo")) || [];
-    finalInfo.push(userScore);
-    localStorage.setItem("finalInfo", JSON.stringify(finalInfo));
+    var finalQuiz = JSON.parse(localStorage.getItem("finalQuiz")) || [];
+    finalQuiz.push(userScore);
+    localStorage.setItem("finalQuiz", JSON.stringify(finalQuiz));
     showScores();
   });
 }
 
 function showScores() {
-  playersName.remove();
+  usersName.remove();
   start.innerText = "Restart";
   start.classList.remove("hide");
 
-  var finalInfo = JSON.parse(localStorage.getItem("finalInfo")) || [];
-  for (i = 0; i < finalInfo.length; i++) {
+  var finalQuiz = JSON.parse(localStorage.getItem("finalQuiz")) || [];
+  for (i = 0; i < finalQuiz.length; i++) {
     var submitEl = document.createElement("li");
     submitEl.className = "result";
-    submitEl.textContent = finalInfo[i].initials + " : " + finalInfo[i].score;
-    scoreBox.appendChild(submitEl);
+    submitEl.textContent = finalQuiz[i].initials + " : " + finalQuiz[i].score;
+    scoreEl.appendChild(submitEl);
   }
 }
 
@@ -144,7 +144,7 @@ function restart() {
   questionContainer.classList.remove("hide");
   answerButton.classList.remove("hide");
   next.classList.remove("hide");
-  done.classList.add("hide");
+  doneBox.classList.add("hide");
   timeLeft = 60;
 }
 
