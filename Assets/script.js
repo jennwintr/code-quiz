@@ -1,20 +1,20 @@
-var start = document.getElementById("start-btn");
-var next = document.getElementById("next-btn"); 
-var questionContainer = document.getElementById("question-container"); 
-var questionElement = document.getElementById("question"); 
-var answerButton = document.getElementById("answer-btns"); 
-var doneBox = document.getElementById("done-container");
-var usersName = document.getElementById("enter-initials-box"); 
-var scoreEl = document.getElementById("scoreEl"); 
-var timerEl = document.getElementById("countdown");
-var shuffleQuestions, currentQuestionIndex; 
+let start = document.getElementById("start-btn");
+let next = document.getElementById("next-btn"); 
+let questionContainer = document.getElementById("question-container"); 
+let questionElement = document.getElementById("question"); 
+let answerButton = document.getElementById("answer-btns"); 
+let doneBox = document.getElementById("done-container");
+let usersName = document.getElementById("enter-initials-box"); 
+let scoreEl = document.getElementById("scoreEl"); 
+let timerEl = document.getElementById("countdown");
+let shuffleQuestions, currentQuestionIndex; 
 
-var timeInterval;
-var timeLeft = 60;
-var score = 0;
+let timeInterval;
+let timeLeft = 60;
+let score = 0;
 
 
-var finalQuiz = [];
+let finalQuiz = [];
 
 function beginQuiz() {
   countdown();
@@ -27,7 +27,7 @@ function beginQuiz() {
 }
 
 function countdown() {
-  var timeInterval = setInterval(function () {
+  let timeInterval = setInterval(function () {
     if (timeLeft >= 1) {
       timerEl.textContent = "Time: " + timeLeft + " seconds left";
       timeLeft--;
@@ -59,7 +59,7 @@ next.addEventListener("click", () => {
 function showQ(question) {
   questionElement.innerText = question.question;
   question.answers.forEach((answer) => {
-    var button = document.createElement("button");
+    let button = document.createElement("button");
     button.innerText = answer.text;
     button.classList.add("btn");
     if (answer.correct) {
@@ -78,8 +78,8 @@ function resetAnswer() {
 }
 
 function selectAnswer(event) {
-  var selectedButton = event.target;
-  var correct = selectedButton.dataset.correct;
+  let selectedButton = event.target;
+  let correct = selectedButton.dataset.correct;
   if (correct) {
     score += timeLeft;
     console.log("time" + score);
@@ -97,7 +97,7 @@ function selectAnswer(event) {
 }
 
 function endGame() {
-  var finalScore = score;
+  let finalScore = score;
   scoreEl.textContent = "Your score is " + finalScore + ".";
   console.log(finalScore);
   localStorage.setItem("finalScore", finalScore);
@@ -111,15 +111,15 @@ function endGame() {
 
   usersName.addEventListener("submit", (event) => {
     event.preventDefault();
-    var userInput = document.querySelector("input[name='Initials']").value;
+    let userInput = document.querySelector("input[name='Initials']").value;
     console.log(userInput);
     localStorage.setItem("User", userInput);
 
-    var userScore = {
+    let userScore = {
       initials: userInput,
       score: finalScore,
     };
-    var finalQuiz = JSON.parse(localStorage.getItem("finalQuiz")) || [];
+    let finalQuiz = JSON.parse(localStorage.getItem("finalQuiz")) || [];
     finalQuiz.push(userScore);
     localStorage.setItem("finalQuiz", JSON.stringify(finalQuiz));
     showScores();
@@ -131,9 +131,9 @@ function showScores() {
   start.innerText = "Restart";
   start.classList.remove("hide");
 
-  var finalQuiz = JSON.parse(localStorage.getItem("finalQuiz")) || [];
+  let finalQuiz = JSON.parse(localStorage.getItem("finalQuiz")) || [];
   for (i = 0; i < finalQuiz.length; i++) {
-    var submitEl = document.createElement("li");
+    let submitEl = document.createElement("li");
     submitEl.className = "result";
     submitEl.textContent = finalQuiz[i].initials + " : " + finalQuiz[i].score;
     scoreEl.appendChild(submitEl);
@@ -150,7 +150,7 @@ function restart() {
 
 
 
-var questions = [
+let questions = [
   {
     question:
       "What does HTML stand for?",
